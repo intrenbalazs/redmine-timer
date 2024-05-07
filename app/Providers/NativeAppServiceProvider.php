@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\MenuBar;
 use Native\Laravel\Facades\Window;
+use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -14,11 +16,23 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         $window = Window::open()
+            ->rememberState()
             ->hideMenu()
             ->width(600)
             ->height(1000)
             ->minWidth(400)
             ->minHeight(400);
+
+        Menu::new()
+            ->appMenu()
+            ->editMenu()
+            ->viewMenu()
+            ->windowMenu()
+            ->register();
+
+        MenuBar::create()
+            ->route('menubar')
+            ->showDockIcon();
 
         if (config('app.platform') === 'darwin') {
             $window->titleBarHidden();

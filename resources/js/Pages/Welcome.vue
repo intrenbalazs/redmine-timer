@@ -1,9 +1,14 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, router } from "@inertiajs/vue3";
+import Button from "primevue/button";
 </script>
 
 <template>
     <Head title="Welcome" />
-    <Link href="/login">Login</Link>
-    <Link href="/register">register</Link>
+    <Button label="Login" @click="router.visit(route('login'))" />
+    <Button
+        label="Register"
+        @click="router.visit(route('register'))"
+        icon="pi pi-check"
+    />
 </template>
