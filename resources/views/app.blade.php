@@ -16,6 +16,11 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+       @if(config('app.platform') === 'darwin')
+        <div style="-webkit-app-region: drag;" class="bg-gradient-to-tr from-blue-600 to-blue-500 h-8">
+            <!-- Your Custom Title Content -->
+        </div>
+        @endif
         @inertia
     </body>
 </html>
